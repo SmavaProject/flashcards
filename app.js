@@ -18,6 +18,12 @@ app.get('/', (request, response)=>{
 app.get('/cards', (req, res)=>{
     res.render('card', {prompt: "Question ?", colors});
 });
+app.get('/hello', (request, response)=>{
+    response.render('hello');
+});
+app.post('/hello', (request, response)=>{
+    response.render('hello');
+});
 app.listen(3000, ()=> {
     console.log('The app is running on  localhost:3000');
 });
