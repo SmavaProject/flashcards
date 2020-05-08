@@ -1,5 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
+//middleware to parse data from forms -???
+app.use(bodyParser.urlencoded({ extended: false}));
 
 const colors = [
     'red',
@@ -22,6 +26,7 @@ app.get('/hello', (request, response)=>{
     response.render('hello');
 });
 app.post('/hello', (request, response)=>{
+    console.log(request.body);
     response.render('hello');
 });
 app.listen(3000, ()=> {
