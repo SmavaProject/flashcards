@@ -18,6 +18,11 @@ const colors = [
 ];
 
 app.set('view engine', 'pug');
+//middleware
+app.use((req, res, next)=>{
+    console.log('one');
+    next();
+});
 
 app.get('/', (request, response)=>{
     const name = request.cookies.username;
@@ -49,6 +54,18 @@ app.post('/hello', (request, response)=>{
 app.post('/goodbye', (request, response)=>{
     response.clearCookie('username');
     response.redirect('/hello');
+});
+//function which catches errors and passes them to the error handler
+app.use((req,res, next) =>{
+   const err = new Error('Not Found');
+   err.status = 404;
+   next(err);
+});
+//custom error handler
+app.use((err, req, res, next) => {
+    res.locals.error = err;
+    res.status(err.status);
+    res.render('error');
 });
 app.listen(3000, ()=> {
     console.log('The app is running on  localhost:3000');
