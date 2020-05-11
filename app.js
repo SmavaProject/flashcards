@@ -2,19 +2,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-
 const app = express();
+
 //middleware to parse data from forms -???
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());
 
-app.set('view engine', 'pug');
-
 const mainRoutes = require('./routes');
-const cardRoutes = require('./routes/cards');
+const cardRoutes = require('./routes/cards.js');
 
 app.use(mainRoutes);
-app.use('./cards', cardRoutes); //routes for cards ?!
+app.use('/cards', cardRoutes); //routes for cards ?! <-- mistake ./cards
+
+app.set('view engine', 'pug');
 
 //function which catches errors and passes them to the error handler
 app.use((req,res, next) =>{

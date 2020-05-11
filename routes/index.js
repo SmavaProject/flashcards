@@ -6,7 +6,7 @@ router.get('/', (request, response)=>{
     if(name){
         response.render('index', {name: name}); //or simply  {name}
     }else{
-        response.redirect('hello');
+        response.redirect('/hello');
     }
 
 });
