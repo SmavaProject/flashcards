@@ -7,6 +7,7 @@ const app = express();
 //middleware to parse data from forms -???
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());
+app.use('/static', express.static('public'));
 
 const mainRoutes = require('./routes');
 const cardRoutes = require('./routes/cards.js');
